@@ -1,38 +1,39 @@
 /**
- * @version 20170501
+ * @version 20170502
  * @author moto1101
  * @description A NodeJS application. Prints out a locale menu on console.
- * 
+ *
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 'use strict';
-var APP = {};
 /**
  * @description Main class
  * @type type
  */
-class C_Main {
+class C_Main
+{
   /**
-   * @description main function 
+   * @description main function
    * @param {type} data_in
    * @returns {undefined}
    */
-  main(data_in) {
+  main(data_in)
+  {
     try {
       APP.Configuration.MenuConfiguration(); // load menu configuration
-      APP.Main.MainMenu({}); // print main menu 
+      APP.Main.MainMenu({}); // print main menu
     } catch (error) {
       APP.Main.ConsoleLog(error);
     }
@@ -42,7 +43,8 @@ class C_Main {
    * @param {type} data_in
    * @returns {C_Main.MainMenu.node_appAnonym$2}
    */
-  MainMenu(data_in) {
+  MainMenu(data_in)
+  {
     try {
       var readline = require('readline');
       var cin = readline.createInterface({
@@ -59,13 +61,15 @@ class C_Main {
       }
       menu_ += 'q - exit\n';
       APP.Main.ConsoleLog(menu_);
-      /*
+      /**
        * @description inline function to handle menu selection
        * @param {type} data_in
        * @returns {undefined}
        */
-      var f_selection = function (data_in) {
-        try {
+      var f_selection = function(data_in)
+      {
+        try
+        {
           cin.close(); //
           if (data_in === 'q')
           {
@@ -81,7 +85,9 @@ class C_Main {
         }
       };
       cin.question("Your selection: ", f_selection);
-      return({menu: menu});
+      return ({
+        menu: menu
+      });
     } catch (error) {
       APP.Main.ConsoleLog(error);
     }
@@ -99,11 +105,13 @@ class C_Main {
     }
   }
   /**
-   * exit application 
+   * @description exit application
    * @returns {undefined}
    */
-  Exit() {
-    try {
+  Exit()
+  {
+    try
+    {
       APP.Main.ConsoleLog('Bye.');
       process.exit(0);
     } catch (error) {
@@ -112,35 +120,34 @@ class C_Main {
   }
 }
 /**
- * program configuration 
+ * @description program configuration
  * @type type
  */
-class C_Configuration {
+class C_Configuration
+{
   /**
-   * @description menu configuration object 
+   * @description menu configuration object
    * @returns {undefined}
    */
-  MenuConfiguration() {
-    try {
-      APP.main_menu = [
-        {
-          name: 'platform name'
-          , exec: APP.ProcessInformation.getPlatform
-        }
-        , {
-          name: 'NodeJS version'
-          , exec: APP.ProcessInformation.getVersion
-        }
-        , {
-          name: 'NodeJS versions'
-          , exec: APP.ProcessInformation.getVersions
-        }
-        , {
-          name: 'different process information'
-          , exec: APP.ProcessInformation.getVariousInformation
-        }
-      ];
-    } catch (error) {
+  MenuConfiguration()
+  {
+    try
+    {
+      APP.main_menu = [{
+        name: 'platform name',
+        exec: APP.ProcessInformation.getPlatform
+      }, {
+        name: 'NodeJS version',
+        exec: APP.ProcessInformation.getVersion
+      }, {
+        name: 'NodeJS versions',
+        exec: APP.ProcessInformation.getVersions
+      }, {
+        name: 'different process information',
+        exec: APP.ProcessInformation.getVariousInformation
+      }];
+    } catch (error)
+    {
       APP.Main.ConsoleLog(error);
     }
   }
@@ -149,36 +156,47 @@ class C_Configuration {
  * @description NodeJS process information
  * @type type
  */
-class C_ProcessInformation {
+class C_ProcessInformation
+{
 
-  getPlatform() {
+  getPlatform()
+  {
     try {
       APP.Main.ConsoleLog(process.platform);
-    } catch (error) {
+    } catch (error)
+    {
       APP.Main.ConsoleLog(error);
     }
   }
 
   getVersion() {
-    try {
+    try
+    {
       APP.Main.ConsoleLog(process.version);
-    } catch (error) {
+    } catch (error)
+    {
       APP.Main.ConsoleLog(error);
     }
   }
 
-  getVersions() {
-    try {
+  getVersions()
+  {
+    try
+    {
       APP.Main.ConsoleLog(process.versions);
-    } catch (error) {
+    } catch (error)
+    {
       APP.Main.ConsoleLog(error);
     }
   }
 
-  getVariousInformation() {
-    try {
+  getVariousInformation()
+  {
+    try
+    {
       APP.Main.ConsoleLog([process.pid, process.execPath, process.connected, process.release, process.mainModule]);
-    } catch (error) {
+    } catch (error)
+    {
       APP.Main.ConsoleLog(error);
     }
   }
@@ -186,13 +204,16 @@ class C_ProcessInformation {
 }
 
 /**
- * @description Starting point 
+ * @description Starting point
  */
-try {
+try
+{
+  var APP = {};
   APP.Main = new C_Main();
   APP.Configuration = new C_Configuration();
   APP.ProcessInformation = new C_ProcessInformation();
   APP.Main.main();
-} catch (error) {
+} catch (error)
+{
   console.log(error);
 }

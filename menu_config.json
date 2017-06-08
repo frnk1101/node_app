@@ -1,0 +1,15 @@
+{
+  "menu": [{
+    "name": "platform name",
+    "exec": "ProcessInformation.getPlatform"
+  }, {
+    "name": "NodeJS version",
+    "exec": "ProcessInformation.getVersion"
+  }, {
+    "name": "NodeJS versions",
+    "exec": "ProcessInformation.getVersions"
+  }, {
+    "name": "different process information",
+    "exec": "ProcessInformation.getVariousInformation"
+  }]
+}

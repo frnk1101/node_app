@@ -119,7 +119,6 @@ colors = {
   lime700: '#afb42b',
   lime800: '#9e9d24',
   lime900: '#827717',
-  lime50: '#f9fbe7',
   yellow100: '#fff9c4',
   yellow200: '#fff59d',
   yellow300: '#fff176',
